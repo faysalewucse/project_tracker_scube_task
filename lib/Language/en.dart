@@ -1,0 +1,3 @@
+final en = {
+  'login': 'Login',
+};
