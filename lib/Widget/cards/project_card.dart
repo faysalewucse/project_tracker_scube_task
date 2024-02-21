@@ -6,14 +6,21 @@ import 'package:scube_project_tracker/Model/Project.dart';
 
 class ProjectCard extends StatelessWidget {
   final Project project;
-  const ProjectCard({Key? key, required this.project}) : super(key: key);
+  final Function onEditIconTap;
+
+  const ProjectCard(
+      {Key? key, required this.project, required this.onEditIconTap})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return  Container(
+    return Container(
       padding: const EdgeInsets.all(16.0),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: WHITE,
+        border: Border.all(
+          color: PRIMARY_COLOR.withOpacity(0.3),
+        ),
         borderRadius: ROUNDED_2,
       ),
       child: Row(
@@ -25,26 +32,22 @@ class ProjectCard extends StatelessWidget {
               children: [
                 Text(
                   project.projectName,
-                  style:
-                  Theme.of(context).textTheme.displayLarge,
+                  style: Theme.of(context).textTheme.displayLarge,
                 ),
                 VERTICAL_GAP_5,
                 Row(
                   children: [
                     Text(
                       project.startDate,
-                      style:
-                      Theme.of(context).textTheme.bodySmall,
+                      style: Theme.of(context).textTheme.bodySmall,
                     ),
                     Text(
                       ' to ',
-                      style:
-                      Theme.of(context).textTheme.bodySmall,
+                      style: Theme.of(context).textTheme.bodySmall,
                     ),
                     Text(
                       project.endDate,
-                      style:
-                      Theme.of(context).textTheme.bodySmall,
+                      style: Theme.of(context).textTheme.bodySmall,
                     ),
                   ],
                 ),
@@ -58,13 +61,27 @@ class ProjectCard extends StatelessWidget {
                 ),
                 Text(
                   project.projectUpdate,
-                  style: const TextStyle(
-                      fontSize: 12.0, color: Colors.grey),
+                  style: const TextStyle(fontSize: 12.0, color: Colors.grey),
                 ),
               ],
             ),
           ),
-          const Icon(PhosphorIcons.pencil_light, color: PRIMARY_COLOR,)
+          GestureDetector(
+              onTap: () {
+                onEditIconTap();
+              },
+              child: Container(
+                height: 40,
+                width: 40,
+                decoration: BoxDecoration(
+                    color: NEUTRAL_N10,
+                    border: Border.all(color: NEUTRAL_N30),
+                    borderRadius: ROUNDED_FULL),
+                child: const Icon(
+                  PhosphorIcons.pencil_light,
+                  color: PRIMARY_COLOR,
+                ),
+              ))
         ],
       ),
     );

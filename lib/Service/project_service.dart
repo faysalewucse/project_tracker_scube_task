@@ -9,10 +9,25 @@ class ProjectService {
   }
 
   static Future<Response> addProject({required Project project}) async {
-    return await Api().dio.post(ADD_PROJECT_API_URL, data: project.toJson());
+    return await Api().dio.post(ADD_PROJECT_API_URL, data: {
+      "start_date": project.startDate,
+      "end_date": project.startDate,
+      "project_name": project.projectName,
+      "project_update": project.projectUpdate,
+      "assigned_engineer": project.assignedEngineer,
+      "assigned_technician": project.assignedTechnician
+    });
   }
 
-  static Future<Response> updateProject({required String projectId}) async {
-    return await Api().dio.put("$UPDATE_PROJECT_API_URL/$projectId");
+  static Future<Response> updateProject(
+      {required String projectId, required Project updatedProjectData}) async {
+    return await Api().dio.put("$UPDATE_PROJECT_API_URL/$projectId/", data: {
+      "start_date": updatedProjectData.startDate,
+      "end_date": updatedProjectData.startDate,
+      "project_name": updatedProjectData.projectName,
+      "project_update": updatedProjectData.projectUpdate,
+      "assigned_engineer": updatedProjectData.assignedEngineer,
+      "assigned_technician": updatedProjectData.assignedTechnician
+    });
   }
 }

@@ -14,6 +14,7 @@ class Api {
         headers: {
           'Content-Type': 'application/json',
         },
+        followRedirects: true,
         receiveTimeout: const Duration(seconds: 10000),
         connectTimeout: const Duration(seconds: 10000),
         sendTimeout: const Duration(seconds: 10000),
@@ -26,6 +27,8 @@ class Api {
           options.headers['Authorization'] = getAuthToken();
 
           print("${options.method} : ${options.uri}");
+          if (options.data != null) print("Data: ${options.data}");
+
           return handler.next(options);
         },
         onResponse: (response, handler) {

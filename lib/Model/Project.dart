@@ -1,5 +1,5 @@
 class Project {
-  final int id;
+  int id;
   final String startDate;
   final String endDate;
   final int startDayOfYear;
@@ -11,7 +11,7 @@ class Project {
   final int duration;
 
   Project({
-    required this.id,
+    this.id = 0,
     required this.startDate,
     required this.endDate,
     required this.startDayOfYear,
@@ -37,15 +37,15 @@ class Project {
   );
 
   Map<String, dynamic> toJson() => {
-    'id': id,
-    'start_date': startDate,
-    'end_date': endDate,
-    'start_day_of_year': startDayOfYear,
-    'end_day_of_year': endDayOfYear,
-    'project_name': projectName,
-    'project_update': projectUpdate,
-    'assigned_engineer': assignedEngineer,
-    'assigned_technician': assignedTechnician,
-    'duration': duration,
+    "id": id,
+    "start_date": startDate,
+    "end_date": endDate,
+    "start_day_of_year": startDayOfYear,
+    "end_day_of_year": endDayOfYear,
+    "project_name": projectName,
+    "project_update": projectUpdate,
+    "assigned_engineer": assignedEngineer,
+    "assigned_technician": assignedTechnician,
+    "duration": duration,
   };
 }

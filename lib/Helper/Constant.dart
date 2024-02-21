@@ -77,6 +77,8 @@ SizedBox HORIZONTAL_GAP_24 = const SizedBox(width: 24);
 SizedBox HORIZONTAL_GAP_32 = const SizedBox(width: 32);
 
 //=====================textStyle================
+TextStyle ERROR_TEXT_STYLE =
+const TextStyle(color: RED, fontWeight: FontWeight.w500, fontSize: 10);
 TextStyle N300_14_NORMAL = GoogleFonts.poppins(
     color: NEUTRAL_N300, fontSize: 14, fontWeight: FontWeight.normal); //done
 TextStyle N300_14_W500 = GoogleFonts.poppins(

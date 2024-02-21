@@ -7,8 +7,9 @@ import 'package:scube_project_tracker/Util/Util%20Widgets/branding_text.dart';
 
 class PrimaryScreen extends StatelessWidget {
   final Widget body;
+  final Widget? floatingActionButton;
 
-  PrimaryScreen({Key? key, required this.body}) : super(key: key);
+  PrimaryScreen({Key? key, required this.body, this.floatingActionButton}) : super(key: key);
 
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   final screenController = Get.find<ScreenController>();
@@ -52,6 +53,7 @@ class PrimaryScreen extends StatelessWidget {
         ),
       ),
       body: body,
+      floatingActionButton: floatingActionButton,
     );
   }
 }

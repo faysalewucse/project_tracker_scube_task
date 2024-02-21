@@ -7,6 +7,7 @@ import 'package:scube_project_tracker/Helper/colors.dart';
 import '../Helper/Constant.dart';
 
 void showApiErrorMessage(response) {
+  debugPrint("MESSAGE ${response.response?.statusCode}", wrapWidth: 1024);
   var getStorage = GetStorage();
   if (response is DioException) {
     if (response.type == DioExceptionType.connectionTimeout) {
@@ -43,7 +44,7 @@ void showMessage(String? msg, {bool isSuccess = false}) {
   Get.snackbar(
     isSuccess ? "Success!" : "Error!",
     msg ?? "Error Occurred",
-    backgroundColor: isSuccess == true ? GREEN : ERROR_500,
+    backgroundColor: isSuccess == true ? PRIMARY_COLOR : ERROR_500,
     snackPosition: SnackPosition.BOTTOM,
     colorText: WHITE,
     borderRadius: 2.0,

@@ -5,6 +5,8 @@ import 'package:scube_project_tracker/Util/Util.dart';
 
 class ProjectController extends GetxController {
   final loadingProjectList = false.obs;
+  final loadingUpdateProject = false.obs;
+  final loadingAddProject = false.obs;
   final projects = <Project>[].obs;
 
   Future<void> getAllProjects() async {
@@ -24,6 +26,34 @@ class ProjectController extends GetxController {
       showApiErrorMessage(err);
     } finally {
       loadingProjectList(false);
+    }
+  }
+
+  Future<void> addProject({required Project projectData}) async {
+    try {
+      loadingAddProject(true);
+      await ProjectService.addProject(project: projectData);
+      await getAllProjects();
+      Get.back();
+      showMessage("Project Added Successfully", isSuccess: true);
+    } catch (err) {
+      showApiErrorMessage(err);
+    } finally {
+      loadingAddProject(false);
+    }
+  }
+
+  Future<void> updateProject({required String projectId, required Project newData}) async {
+    try {
+      loadingUpdateProject(true);
+      await ProjectService.updateProject(projectId: projectId, updatedProjectData: newData);
+      await getAllProjects();
+      Get.back();
+      showMessage("Project Updated Successfully", isSuccess: true);
+    } catch (err) {
+      showApiErrorMessage(err);
+    } finally {
+      loadingUpdateProject(false);
     }
   }
 }
